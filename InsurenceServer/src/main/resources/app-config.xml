@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="Settings" class="south62.com.configuration.Settings">
+      <property name="mapTypes">
+	   <map>
+            <entry key="Flat" value="1.7"/>           
+            <entry key="House" value="1.5"/>
+            <entry key="Room" value="1.3"/>
+         </map>
+      </property>
+      <property name="mapYear">
+	   <map>
+            <entry key="1900" value="1.3"/>           
+            <entry key="2000" value="1.6"/>
+            <entry key="2015" value="2.0"/>
+         </map>
+      </property>
+      <property name="mapSquare">
+	   <map>
+            <entry key="0" value="1.2"/>           
+            <entry key="50" value="1.5"/>
+            <entry key="101" value="2.0"/>
+         </map>
+      </property>
+    </bean>
+   
+</beans> 
