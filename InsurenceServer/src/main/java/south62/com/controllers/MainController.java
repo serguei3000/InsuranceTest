@@ -30,56 +30,56 @@ import south62.com.validation.IntegerEditor;
 public class MainController {
 	
     @InitBinder
-	public void initBinder(WebDataBinder binder) {
-	    binder.registerCustomEditor(BigDecimal.class, new BigDecimalEditor());
-	    binder.registerCustomEditor(LocalDate.class, new DateEditor());
-	    binder.registerCustomEditor(Integer.class, new IntegerEditor());
-	}
+    public void initBinder(WebDataBinder binder) {
+        binder.registerCustomEditor(BigDecimal.class, new BigDecimalEditor());
+	binder.registerCustomEditor(LocalDate.class, new DateEditor());
+	binder.registerCustomEditor(Integer.class, new IntegerEditor());
+    }
 	
-	@Autowired
-	private  AgreementService agreements;
+    @Autowired
+    private  AgreementService agreements;
 	
-	@Autowired
-	private  ClientService clients;
+    @Autowired
+    private  ClientService clients;
 	
-	@Autowired
-	private  CoefficientService coefficientService;
+    @Autowired
+    private  CoefficientService coefficientService;
 	
 	
-	@RequestMapping(value = "api/getAgreements", 
+    @RequestMapping(value = "api/getAgreements", 
                        method = RequestMethod.GET, 
                        produces = {MediaType.APPLICATION_JSON_VALUE })
-    @ResponseBody
+    
     public List<Agreement> getAgreements() {
         List<Agreement> list = agreements.getAgreements();
         return list;
 	}
 	
-	@RequestMapping(value = "api/getClients", 
+    @RequestMapping(value = "api/getClients", 
                        method = RequestMethod.GET, 
                        produces = {MediaType.APPLICATION_JSON_VALUE })
-    @ResponseBody
+    
     public List<Client> getClients() {
         List<Client> list = clients.getClients();
         return list;
 	}
 	
-	@RequestMapping(value = "api/getEstates", 
+    @RequestMapping(value = "api/getEstates", 
             method = RequestMethod.GET, 
             produces = {MediaType.APPLICATION_JSON_VALUE })
-    @ResponseBody
+    
     public List<Estate> getEstates() {
         List<Estate> list = agreements.getEstates();
         return list;
     }
 	
-	//Возвращает результат расчета, округленный до 2 знаков
-	//Test string
-	//http://localhost:8080//api/culculate?amount=1000&dateBeg=01.11.2011&dateEnd=01.11.2012&type=Flat&year=2014&square=45
-	@RequestMapping(value = "api/culculate", 
+    //Возвращает результат расчета, округленный до 2 знаков
+    //Test string
+    //http://localhost:8080//api/culculate?amount=1000&dateBeg=01.11.2011&dateEnd=01.11.2012&type=Flat&year=2014&square=45
+    @RequestMapping(value = "api/culculate", 
             method = RequestMethod.GET, 
             produces = {MediaType.APPLICATION_JSON_VALUE })
-    @ResponseBody
+    
     public BigDecimal Culculate( @RequestParam("amount") BigDecimal amount,
     		                       @RequestParam("dateBeg") @DateTimeFormat(pattern = "dd.MM.yyyy") LocalDate dateBeg, 
     		                       @RequestParam("dateEnd") @DateTimeFormat(pattern = "dd.MM.yyyy") LocalDate dateEnd, 
@@ -90,39 +90,39 @@ public class MainController {
 	    return coefficientService.Culculate(amount, dateBeg, dateEnd, type, year, square);        
    }
 	
-	@RequestMapping(value = "api/addClient", 
+    @RequestMapping(value = "api/addClient", 
 	                    method = RequestMethod.POST, 
 	                    produces = { MediaType.APPLICATION_JSON_VALUE, 
 	                    MediaType.APPLICATION_XML_VALUE })
-	@ResponseBody
-	public Long addClient (@RequestBody Client client) {
-		if (clients.addClient(client))
-	        return client.getId();
-	    else	   
-	        return null;
+	
+    public Long addClient (@RequestBody Client client) {
+	if (clients.addClient(client))
+	    return client.getId();
+	else	   
+	    return null;
 	 }
 	 
-	@RequestMapping(value = "api/addEstate", 
+    @RequestMapping(value = "api/addEstate", 
              method = RequestMethod.POST, 
              produces = { MediaType.APPLICATION_JSON_VALUE, 
              MediaType.APPLICATION_XML_VALUE })
-    @ResponseBody
+    
     public Long addEstate (@RequestBody Estate estate) {
-    if (agreements.addEstate(estate))
+        if (agreements.addEstate(estate))
 	    return estate.getId();
-    else	   
-        return null;
+        else	   
+            return null;
     }
 	
-	@RequestMapping(value = "api/addAgreement", 
+    @RequestMapping(value = "api/addAgreement", 
             method = RequestMethod.POST, 
             produces = { MediaType.APPLICATION_JSON_VALUE, 
             MediaType.APPLICATION_XML_VALUE })
-    @ResponseBody
+    
     public Long addAgreement (@RequestBody Agreement agreement) {
 		
-		if (agreements.addAgreement(agreement))
-	        return agreement.getId();
+	if (agreements.addAgreement(agreement))
+	    return agreement.getId();
         else	   
             return null;
     }
