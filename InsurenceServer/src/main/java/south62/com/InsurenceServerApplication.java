@@ -19,7 +19,7 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 
-
+//for jsr310 java 8 java.time.*
 @EntityScan(basePackageClasses = {InsurenceServerApplication.class, Jsr310JpaConverters.class})
 @SpringBootApplication (scanBasePackages="south62.com", exclude = {HibernateJpaAutoConfiguration.class})
 @PropertySource( value = {"classpath:application.properties"} )
