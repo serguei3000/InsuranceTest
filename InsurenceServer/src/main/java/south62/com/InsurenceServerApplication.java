@@ -21,8 +21,7 @@ import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 
 
 @EntityScan(basePackageClasses = {InsurenceServerApplication.class, Jsr310JpaConverters.class})
-@SpringBootApplication (scanBasePackages={
-		"south62.com.services", "south62.com.dao", "south62.com.controllers"}, exclude = {HibernateJpaAutoConfiguration.class})
+@SpringBootApplication (scanBasePackages="south62.com", exclude = {HibernateJpaAutoConfiguration.class})
 @PropertySource( value = {"classpath:application.properties"} )
 public class InsurenceServerApplication {
 	
