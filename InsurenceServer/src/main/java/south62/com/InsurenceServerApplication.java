@@ -26,14 +26,14 @@ import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 @PropertySource( value = {"classpath:application.properties"} )
 public class InsurenceServerApplication {
 	
-	@Autowired
-	private Environment env;
+    @Autowired
+    private Environment env;
 	
-	public static void main(String[] args) {
-		SpringApplication.run(InsurenceServerApplication.class, args);
+    public static void main(String[] args) {
+	SpringApplication.run(InsurenceServerApplication.class, args);
 	}
 	
-	@Bean(name = "dataSource")
+    @Bean(name = "dataSource")
     public DataSource getDataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName(env.getProperty("spring.datasource.driver-class-name"));
@@ -44,11 +44,11 @@ public class InsurenceServerApplication {
         return dataSource;
     }
 	
-	@Autowired
+    @Autowired
     @Bean(name = "sessionFactory")
     public SessionFactory getSessionFactory(DataSource dataSource) throws Exception {
         
-		Properties properties = new Properties();
+	Properties properties = new Properties();
         properties.put("hibernate.dialect", env.getProperty("spring.jpa.properties.hibernate.dialect"));
         properties.put("hibernate.show_sql", env.getProperty("spring.jpa.show-sql"));
         properties.put("current_session_context_class", 
